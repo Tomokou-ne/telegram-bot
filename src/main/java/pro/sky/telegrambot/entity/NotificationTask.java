@@ -1,18 +1,19 @@
-package pro.sky.telegrambot.service;
+package pro.sky.telegrambot.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
+@Table (name = "notification_task")
 public class NotificationTask {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
+    @Column(name = "chat_id", nullable = false)
     int chatId;
+    @Column(name = "notification_text", nullable = false)
     String notificationText;
+    @Column(name = "notification_time_data", nullable = false)
     LocalDateTime notificationTime;
 
     public NotificationTask(long id, int chatId, String notificationText, LocalDateTime notificationTime) {
@@ -55,4 +56,6 @@ public class NotificationTask {
     public void setNotificationTime(LocalDateTime notificationTime) {
         this.notificationTime = notificationTime;
     }
+
+
 }
